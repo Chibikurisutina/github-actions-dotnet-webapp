@@ -1,0 +1,29 @@
+name: dotnet-build
+
+on:
+    push:
+    schedule:
+        - cron: '0 * * * *'
+
+
+jobs:
+    test_schedule:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout do código
+              uses: actions/checkout@v3
+                        
+            - name: Rodar script ou comando
+              uses: actions/setup-dotnet@v3
+              with:
+                dotnet-version: '7.0.x'
+            
+            - name: Restaurar pendências
+              run: dotnet restore
+            
+            - name: Build do Projeto
+              run: dotnet build --no-restore --configuration Release```
+
+            - name: Every Hour
+              run: echo "This step will always run"
